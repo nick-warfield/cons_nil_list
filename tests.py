@@ -18,3 +18,13 @@ def test_equals():
     assert Cons(1, Nil()) == Cons(1, Nil())
     assert Cons(1, Nil()) != Cons(2, Nil())
     assert Cons(1, Nil()) != Cons(1, Cons(2, Nil()))
+
+def test_append():
+    list = Nil()
+    assert list == Nil()
+    list = list.append(1)
+    assert list == Cons(1, Nil())
+    list = list.append(5)
+    assert list == Cons(1, Cons(5, Nil()))
+    list = list.append(-3)
+    assert list == Cons(1, Cons(5, Cons(-3, Nil())))

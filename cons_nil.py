@@ -17,8 +17,8 @@ class Cons(ConsNilList):
     def __eq__(self, other) -> bool:
         return self.value == other.value and self.next == other.next
 
-    def append(self, value: int):
-        pass
+    def append(self, value: int) -> ConsNilList:
+        return Cons(self.value, self.next.append(value))
 
     def insert(self, value: int, index: int):
         pass
@@ -47,3 +47,6 @@ class Nil(ConsNilList):
 
     def __eq__(self, other) -> bool:
         return type(self) == type(other)
+
+    def append(self, value) -> ConsNilList:
+        return Cons(value, Nil())
