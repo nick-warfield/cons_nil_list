@@ -28,3 +28,14 @@ def test_append():
     assert list == Cons(1, Cons(5, Nil()))
     list = list.append(-3)
     assert list == Cons(1, Cons(5, Cons(-3, Nil())))
+
+def test_pop():
+    list = Cons(1, Cons(2, Cons(7, Nil())))
+    list = list.pop()
+    assert list == Cons(2, Cons(7, Nil()))
+    list = list.pop()
+    assert list == Cons(7, Nil())
+    list = list.pop()
+    assert list == Nil()
+    list = list.pop()
+    assert list == Nil()
