@@ -23,8 +23,8 @@ class Cons(ConsNilList):
     def insert(self, value: int, index: int):
         pass
 
-    def pop(self) -> int:
-        pass
+    def pop(self) -> ConsNilList:
+        return self.next
 
     def remove(self, index: int) -> int:
         pass
@@ -50,3 +50,6 @@ class Nil(ConsNilList):
 
     def append(self, value) -> ConsNilList:
         return Cons(value, Nil())
+
+    def pop(self) -> ConsNilList:
+        return Nil()
