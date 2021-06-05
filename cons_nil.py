@@ -30,6 +30,10 @@ class Cons(ConsNilList):
         return self.next
 
     def remove(self, index: int) -> int:
+        if index != 0:
+            return Cons(self.value, self.next.remove(index - 1))
+        else:
+            return self.next
         pass
 
     def count(self, value: int) -> int:
@@ -58,6 +62,9 @@ class Nil(ConsNilList):
         return Cons(value, self)
 
     def pop(self) -> ConsNilList:
+        return Nil()
+
+    def remove(self, index: int) -> ConsNilList:
         return Nil()
 
     def count(self, value: int) -> int:
