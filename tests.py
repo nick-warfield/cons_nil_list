@@ -12,3 +12,9 @@ def test_length():
     assert 0 == len(Nil())
     assert 1 == len(Cons(1, Nil()))
     assert 2 == len(Cons(1, Cons(2, Nil())))
+
+def test_equals():
+    assert Nil() == Nil()
+    assert Cons(1, Nil()) == Cons(1, Nil())
+    assert Cons(1, Nil()) != Cons(2, Nil())
+    assert Cons(1, Nil()) != Cons(1, Cons(2, Nil()))

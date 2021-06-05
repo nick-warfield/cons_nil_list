@@ -14,6 +14,9 @@ class Cons(ConsNilList):
     def __len__(self) -> int:
         return 1 + len(self.next)
 
+    def __eq__(self, other) -> bool:
+        return self.value == other.value and self.next == other.next
+
     def append(self, value: int):
         pass
 
@@ -41,3 +44,6 @@ class Nil(ConsNilList):
 
     def __len__(self) -> int:
         return 0
+
+    def __eq__(self, other) -> bool:
+        return type(self) == type(other)
