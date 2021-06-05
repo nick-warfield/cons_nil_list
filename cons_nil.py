@@ -33,7 +33,7 @@ class Cons(ConsNilList):
         pass
 
     def count(self, value: int) -> int:
-        pass
+        return int(self.value == value) + self.next.count(value)
 
     def reverse(self) -> ConsNilList:
         pass
@@ -59,3 +59,6 @@ class Nil(ConsNilList):
 
     def pop(self) -> ConsNilList:
         return Nil()
+
+    def count(self, value: int) -> int:
+        return 0

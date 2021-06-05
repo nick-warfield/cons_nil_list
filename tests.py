@@ -51,3 +51,11 @@ def test_insert():
     assert list.insert(7, 0) == Cons(7, Cons(4, Cons(1, Nil())))
     assert list.insert(7, 1) == Cons(4, Cons(7, Cons(1, Nil())))
     assert list.insert(7, 2) == Cons(4, Cons(1, Cons(7, Nil())))
+
+def test_count():
+    list = Cons(3, Cons(2, Cons(-1, Cons(3, Cons(3, Cons(-1, Cons(3, Nil())))))))
+    assert list.count(7) == 0
+    assert list.count(2) == 1
+    assert list.count(3) == 4
+    assert list.count(-1) == 2
+
