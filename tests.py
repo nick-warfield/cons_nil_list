@@ -39,3 +39,15 @@ def test_pop():
     assert list == Nil()
     list = list.pop()
     assert list == Nil()
+
+def test_insert():
+    list = Nil()
+    assert list.insert(1, 0) == Cons(1, Nil())
+    assert list.insert(1, 1) == Cons(1, Nil())
+    assert list.insert(1, 8) == Cons(1, Nil())
+
+    list = list.insert(1, 0).insert(4, 0)
+    assert list == Cons(4, Cons(1, Nil()))
+    assert list.insert(7, 0) == Cons(7, Cons(4, Cons(1, Nil())))
+    assert list.insert(7, 1) == Cons(4, Cons(7, Cons(1, Nil())))
+    assert list.insert(7, 2) == Cons(4, Cons(1, Cons(7, Nil())))
