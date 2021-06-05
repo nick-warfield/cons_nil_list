@@ -40,7 +40,12 @@ class Cons(ConsNilList):
         return int(self.value == value) + self.next.count(value)
 
     def reverse(self) -> ConsNilList:
-        pass
+        return self.__reverse_helper__(Nil())
+
+    def __reverse_helper__(self, accum: ConsNilList) -> ConsNilList:
+        accum = Cons(self.value, accum)
+        accum = self.next.__reverse_helper__(accum)
+        return accum
 
     def sort(self) -> ConsNilList:
         pass
@@ -69,3 +74,10 @@ class Nil(ConsNilList):
 
     def count(self, value: int) -> int:
         return 0
+
+    def reverse(self) -> ConsNilList:
+        return Nil()
+
+    def __reverse_helper__(self, accum: ConsNilList) -> ConsNilList:
+        return accum
+

@@ -66,3 +66,9 @@ def test_count():
     assert list.count(3) == 4
     assert list.count(-1) == 2
 
+def test_reverse():
+    assert Nil().reverse() == Nil()
+    list = Cons(1, Nil())
+    assert list.reverse() == list
+    list = Cons(1, Cons(2, Cons(3, Nil())))
+    assert list.reverse() == Cons(3, Cons(2, Cons(1, Nil())))
