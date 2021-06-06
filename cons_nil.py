@@ -91,7 +91,7 @@ class Nil(ConsNilList):
         return Cons(value, Nil())
 
     def insert(self, value: int, index: int) -> ConsNilList:
-        return Cons(value, self)
+        return Cons(value, Nil())
 
     def pop(self) -> ConsNilList:
         return Nil()
