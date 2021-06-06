@@ -72,3 +72,29 @@ def test_reverse():
     assert list.reverse() == list
     list = Cons(1, Cons(2, Cons(3, Nil())))
     assert list.reverse() == Cons(3, Cons(2, Cons(1, Nil())))
+
+def test_merge_sorted():
+    l1 = Cons(1, Cons(3, Cons(5, Nil())))
+    l2 = Cons(2, Cons(4, Cons(6, Nil())))
+    l3 = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Cons(6, Nil()))))))
+    assert Nil().__merge_sorted__(Nil()) == Nil()
+    assert Nil().__merge_sorted__(l1) == l1
+    assert l1.__merge_sorted__(Nil()) == l1
+    assert l1.__merge_sorted__(l2) == l3
+    assert l2.__merge_sorted__(l1) == l3
+
+def test_split():
+    l1 = Cons(1, Cons(2, Cons(3, Nil())))
+    l2 = Cons(4, Cons(5, Cons(6, Nil())))
+    l3 = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Cons(6, Nil()))))))
+    assert Nil().split(0) == (Nil(), Nil())
+    assert l3.split(0) == (Nil(), l3)
+    assert l3.split(len(l3)) == (l3, Nil())
+    assert l3.split(3) == (l1, l2)
+
+def test_sort():
+    l1 = Cons(4, Cons(3, Cons(6, Cons(1, Cons(2, Cons(5, Nil()))))))
+    l2 = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Cons(6, Nil()))))))
+    assert Nil().sort() == Nil()
+    assert Cons(1, Nil()).sort() == Cons(1, Nil())
+    assert l1.sort() == l2

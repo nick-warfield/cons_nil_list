@@ -15,7 +15,10 @@ class Cons(ConsNilList):
         return 1 + len(self.next)
 
     def __eq__(self, other) -> bool:
-        return self.value == other.value and self.next == other.next
+        if type(other) == Nil:
+            return False
+        else:
+            return self.value == other.value and self.next == other.next
 
     def append(self, value: int) -> ConsNilList:
         return Cons(self.value, self.next.append(value))
@@ -43,12 +46,36 @@ class Cons(ConsNilList):
         return self.__reverse_helper__(Nil())
 
     def __reverse_helper__(self, accum: ConsNilList) -> ConsNilList:
-        accum = Cons(self.value, accum)
-        accum = self.next.__reverse_helper__(accum)
-        return accum
+        return self.next.__reverse_helper__(Cons(self.value, accum))
 
+    # merge sort
     def sort(self) -> ConsNilList:
-        pass
+        return self.__sort_helper__(len(self) // 2)
+
+    def __sort_helper__(self, half: int) -> ConsNilList:
+        if self.next == Nil():
+            return self
+
+        left, right = self.split(half)
+        left = left.__sort_helper__(half // 2)
+        right = right.__sort_helper__(half // 2 + 1)
+        return left.__merge_sorted__(right)
+        
+    def __merge_sorted__(self, other: ConsNilList) -> ConsNilList:
+        if other == Nil():
+            return self
+
+        if self.value < other.value:
+            return Cons(self.value,  self.next.__merge_sorted__(other))
+        else:
+            return Cons(other.value, other.next.__merge_sorted__(self))
+    
+    def split(self, index: int) -> (ConsNilList, ConsNilList):
+        if index == 0:
+            return Nil(), self
+        else:
+            left, right = self.next.split(index - 1)
+            return Cons(self.value, left), right
 
 class Nil(ConsNilList):
     def __str__(self) -> str:
@@ -80,4 +107,16 @@ class Nil(ConsNilList):
 
     def __reverse_helper__(self, accum: ConsNilList) -> ConsNilList:
         return accum
+
+    def sort(self) -> ConsNilList:
+        return Nil()
+
+    def __sort_helper__(self, half: int) -> ConsNilList:
+        return Nil()
+
+    def __merge_sorted__(self, other: ConsNilList) -> ConsNilList:
+        return other
+
+    def split(self, index: int) -> ConsNilList:
+        return Nil(), Nil()
 
